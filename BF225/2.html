@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz über den Zweiten Weltkrieg</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            margin: 20px 0;
+        }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #e7f3fe;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>Quiz über den Zweiten Weltkrieg</h1>
+        <div id="quiz"></div>
+        <button onclick="submitQuiz()">Quiz abschicken</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Wer war der Führer der nationalsozialistischen Partei in Deutschland?",
+                answers: ["Joseph Stalin", "Winston Churchill", "Adolf Hitler", "Franklin D. Roosevelt"],
+                correct: 2
+            },
+            {
+                question: "In welchem Jahr begann der Zweite Weltkrieg?",
+                answers: ["1938", "1939", "1940", "1941"],
+                correct: 1
+            },
+            {
+                question: "Welches Ereignis führte zum Eintritt der USA in den Krieg?",
+                answers: ["Die Bombardierung von Pearl Harbor", "Die Schlacht um Stalingrad", "Die Invasion in der Normandie", "Die Kapitulation Deutschlands"],
+                correct: 0
+            },
+            {
+                question: "Was war der Codename für die Invasion in der Normandie?",
+                answers: ["Operation Barbarossa", "Operation Overlord", "Operation Market Garden", "Operation Sea Lion"],
+                correct: 1
+            },
+            {
+                question: "Welches Land war nicht Teil der Achsenmächte?",
+                answers: ["Deutschland", "Italien", "Japan", "Sowjetunion"],
+                correct: 3
+            },
+            {
+                question: "Wann endete der Zweite Weltkrieg in Europa?",
+                answers: ["1944", "1945", "1946", "1947"],
+                correct: 1
+            },
+            {
+                question: "Welches Land wurde 1941 von Deutschland angegriffen?",
+                answers: ["Frankreich", "Polen", "Sowjetunion", "Britische Inseln"],
+                correct: 2
+            },
+            {
+                question: "Was war der Hauptzweck der Wannsee-Konferenz 1942?",
+                answers: ["Planung der Invasion in die Sowjetunion", "Koordination der Judenvernichtung", "Diskussion über den Frieden", "Strategien zur Kriegsführung"],
+                correct: 1
+            },
+            {
+                question: "Wer war der britische Premierminister während des Krieges?",
+                answers: ["Neville Chamberlain", "Winston Churchill", "Clement Attlee", "David Lloyd George"],
+                correct: 1
+            },
+            {
+                question: "Was war die letzte große Schlacht des Zweiten Weltkriegs?",
+                answers: ["Schlacht um Midway", "Schlacht um Stalingrad", "Schlacht um Berlin", "Schlacht um El Alamein"],
+                correct: 2
+            },
+            {
+                question: "Welches Land war das erste, das von Deutschland während des Krieges überfallen wurde?",
+                answers: ["Frankreich", "Polen", "Tschechoslowakei", "Dänemark"],
+                correct: 1
+            },
+            {
+                question: "Welches Ereignis wird als 'Kristallnacht' bezeichnet?",
+                answers: ["Die erste Bombardierung Berlins", "Die Zerstörung jüdischer Geschäfte und Synagogen", "Die Invasion in Polen", "Die Kapitulation Deutschlands"],
+                correct: 1
+            },
+            {
+                question: "Was war die Hauptwaffe der Luftwaffe während des Blitzkriegs?",
+                answers: ["Panzer", "Bomber", "U-Boote", "Infanterie"],
+                correct: 1
+            },
+            {
+                question: "Welches Land war nach dem Krieg geteilt?",
+                answers: ["Frankreich", "Deutschland", "Italien", "Japan"],
+                correct: 1
+            },
+            {
+                question: "Was war die Hauptursache für den Ausbruch des Zweiten Weltkriegs?",
+                answers: ["Der Versailler Vertrag", "Die Weltwirtschaftskrise", "Der Aufstieg des Kommunismus", "Die Expansion Japans"],
+                correct: 0
+            },
+            {
+                question: "Wie hieß das geheime Projekt zur Entwicklung der Atombombe?",
+                answers: ["Manhattan-Projekt", "Apollo-Programm", "Projekt Blue Book", "Operation Paperclip"],
+                correct: 0
+            },
+            {
+                question: "Welches Land kapitulierte als erstes im Zweiten Weltkrieg?",
+                answers: ["Frankreich", "Polen", "Niederlande", "Dänemark"],
+                correct: 3
+            },
+            {
+                question: "Was war die Hauptstrategie der Alliierten zu Beginn des Krieges?",
+                answers: ["Blitzkrieg", "Invasion", "Containment", "Zermürbung"],
+                correct: 3
+            },
+            {
+                question: "Welches Ereignis fand am 6. August 1945 statt?",
+                answers: ["Die Kapitulation Japans", "Die erste Atombombenabwurf auf Hiroshima", "Die Invasion in der Normandie", "Die Befreiung von Auschwitz"],
+                correct: 1
+            },
+            {
+                question: "Wer war der militärische Führer der USA im Pazifik?",
+                answers: ["Dwight D. Eisenhower", "Douglas MacArthur", "George Patton", "Omar Bradley"],
+                correct: 1
+            }
+        ];
+
+        function loadQuiz() {
+            const quizContainer = document.getElementById('quiz');
+            questions.forEach((q, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.classList.add('question');
+                questionElement.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+                q.answers.forEach((answer, i) => {
+                    questionElement.innerHTML += `
+                        <label>
+                            <input type="radio" name="question${index}" value="${i}">
+                            ${answer}
+                        </label><br>
+                    `;
+                });
+                quizContainer.appendChild(questionElement);
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selected && parseInt(selected.value) === q.correct) {
+                    score++;
+                }
+            });
+
+            const resultContainer = document.getElementById('result');
+            resultContainer.style.display = 'block';
+            resultContainer.innerHTML = `Du hast ${score} von ${questions.length} Fragen richtig beantwortet.`;
+        }
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
