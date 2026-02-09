@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data:image/svg+xml;utf8,%3Csvg%20width%3D%221000%22%20height%3D%22250%22%20viewBox%3D%220%200%201000%20250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3C!--%20Hintergrund%20transparent%20--%3E%0A%20%20%3Crect%20width%3D%221000%22%20height%3D%22250%22%20fill%3D%22none%22%3E%3C%2Frect%3E%0A%0A%20%20%3C!--%20Schwarzer%20Schatten%20f%C3%BCr%20N.A.%20--%3E%0A%20%20%3Ctext%20x%3D%2245%22%20y%3D%22160%22%20font-family%3D%22Montserrat%2C%20sans-serif%22%20font-size%3D%22130%22%20font-weight%3D%22800%22%20fill%3D%22rgba(0%2C0%2C0%2C0.5)%22%3E%0A%20%20%20%20N.A.%0A%20%20%3C%2Ftext%3E%0A%0A%20%20%3C!--%20Monogramm%20N.A.%20in%20Baby%20Rosa%20--%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22155%22%20font-family%3D%22Montserrat%2C%20sans-serif%22%20font-size%3D%22130%22%20font-weight%3D%22800%22%20fill%3D%22%23FFC0CB%22%3E%0A%20%20%20%20N.A.%0A%20%20%3C%2Ftext%3E%0A%0A%20%20%3C!--%20%E2%80%9EClothes%E2%80%9C%20in%20Kravitz%20(Sans-Serif)%20--%3E%0A%20%20%3Ctext%20x%3D%22310%22%20y%3D%22165%22%20font-family%3D%22Kravitz%2C%20sans-serif%22%20font-size%3D%2290%22%20fill%3D%22%23222
+
+222%22%3E%0A%20%20%20%20Clothes%0A%20%20%3C%2Ftext%3E%0A%0A%20%20%3C!--%20Dekorative%20Baby%20Rosa%20Linie%20--%3E%0A%20%20%3Crect%20x%3D%2230%22%20y%3D%22175%22%20width%3D%22920%22%20height%3D%228%22%20fill%3D%22%23FFC0CB%22%3E%3C%2Frect%3E%0A%3C%2Fsvg%3E%0A</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.5s; /* Smooth transition for background color */
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            padding: 10px;
+        }
+        section {
+            padding: 20px;
+            background: white;
+            margin: 10px;
+            border-radius: 5px;
+            display: none; /* Initially hide all sections */
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #007bff;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .active {
+            display: block; /* Show active section */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Noah - Fußballseite</h1>
+</header>
+
+<nav>
+    <a onmouseover="changeBackground('Schuhe')" onmouseout="resetBackground()" onclick="showSection('Schuhe')">Schuhe</a>
+    <a onmouseover="changeBackground('T shirt')" onmouseout="resetBackground()" onclick="showSection('T-shirt´s')">T Shirt</a>
+    <a onmouseover="changeBackground('Hosen')" onmouseout="resetBackground()" onclick="showSection('Hosen')">hosen</a>
+</nav>
+
+<section id="Schuhe" class="active">
+    <h2>Schuhe</h2>
+    <h3>Informationen</h3>
+    <p>alle schuhe die sie brauchen.</p>
+     <h3>Sale</h3>
+    <p>Marken: ...</p>
+    
+    <h3>neuzugänge</h3>
+    <p>Größen: ...</p>
+</section>
+
+<section id="T-shirt´s">
+    <h2>T-Shirts´s</h2>
+    <h3>Informationen</h3>
+    <p>alle T-Shirts die sie brauchen</p>
+    <h3>Sale</h3>
+    <p>Marken: ...
+</p>
+</section>
+
+<section id="Hosen">
+    <h2>Hosen</h2>
+    <h3>Informationen</h3>
+    <p> alle hosen die sie brauchen </p
+</section>
+
+
+    <p>&copy; 2026 N.A.clothes</p>
+
+
+<script>
+    function showSection(sectionId) {
+        // Alle Sektionen ausblenden
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Gewählte Sektion anzeigen
+        const activeSection = document.getElementById(sectionId);
+        activeSection.classList.add('active');
+    }
+
+    function changeBackground(nationality) {
+        if (CLOTHES) {
+            document.body.style.backgroundColor = 'red'; // Set background to red
+        } else if (nationality === 'deutschland') {
+            document.body.style.backgroundColor = 'black'; // Set background to black
+        } else if (nationality === 'marokko') {
+            document.body.style.backgroundColor = 'darkgreen'; // Set background to dark green
+        }
+    }
+
+    function resetBackground() {
+        document.body.style.backgroundColor = '#f4f4f4'; // Reset to original background color
+    }
+</script>
+
+</body>
+</html>
